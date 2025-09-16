@@ -9,7 +9,6 @@ import { enviroment } from '../../../core/enviroment/baseData';
 })
 export class CheckOrdersServices {
   constructor(private _HttpClient:HttpClient){}
-  // userId:BehaviorSubject<string>=new BehaviorSubject<string>("")
   cashOrder(ShippingAddress:ShippingAddress,cartId:string):Observable<any>{
     return this._HttpClient.post<ShippingAddress>(`${enviroment.baseUrl}/api/v1/orders/${cartId}`,
       {
