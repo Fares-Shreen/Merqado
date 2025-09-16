@@ -1,0 +1,39 @@
+<section class="w-full bg-void-light dark:bg-void-black">
+  <div class="container mx-auto mt-18 py-10">
+    <div class="bg-main rounded p-8 gap-8 flex flex-col ">
+      <div class="flex justify-between items-center">
+        <h2 class="text-3xl font-semibold  ">{{"Your Orders"|translate}}</h2>
+      </div>
+
+      <div>
+        @if (orderDetails.length > 0) {
+        @for (order of orderDetails; track order._id) {
+        <div class="border-b pb-4 mb-4">
+          <h3 class="text-xl font-bold mb-2">{{"Order ID"|translate}}: {{ order._id}}</h3>
+          <p class="text-cosmic-purple futuristic-body">{{"Total Price"|translate}}: {{ order.totalOrderPrice }} EGP</p>
+          <p class="text-cosmic-purple futuristic-body">{{"Payment"|translate}}: {{ order.paymentMethodType }}</p>
+          <p class="text-solar-orange futuristic-body">{{"Status"|translate}}: {{ order.isDelivered ? 'Delivered' : 'Pending' }}</p>
+
+          @for (item of order.cartItems; track item._id) {
+          <div class="row items-center mt-3">
+            <div class="w-2/12">
+              <img [src]="item.product.imageCover" alt="" class="rounded">
+            </div>
+            <div class="w-10/12 ps-5">
+              <div class="mb-2 font-semibold text-cosmic-purple">{{ item.product.title }}</div>
+              <div class="mb-2 text-void-black futuristic-body">{{"Price"|translate}}: {{ item.price }} EGP</div>
+              <div class="mb-2 futuristic-body text-void-black">{{"Quantity"|translate}}: {{ item.count }}</div>
+            </div>
+          </div>
+          }
+        </div>
+        }
+        } @else {
+        <div class="text-center py-8">
+          <p class="text-gray-500">{{"Loading"|translate}} ...</p>
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>

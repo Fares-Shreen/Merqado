@@ -1,0 +1,32 @@
+<section class="w-full bg-void-light dark:bg-void-black py-12">
+     <div class="container mx-auto mt-24">
+    <div class="bg-electric-blue rounded p-8 gap-8 flex flex-col ">
+        <div class="flex justify-between items-center">
+            <h2 class="text-3xl font-semibold">{{"Wishlist"|translate}}</h2>
+        </div>
+        <div>
+            @if (wishListData && wishListData.length>0) {
+                @for (wishListProduct of wishListData; track wishListProduct._id) {
+                <div class="row items-center mt-3"[@slideInDownOnEnter]>
+                    <div class="w-2/12">
+                        <img [src]="wishListProduct.imageCover" alt="">
+                    </div>
+                    <div class="w-8/12 ps-5">
+                        <div class="mb-2  text-void-black futuristic-body ">{{wishListProduct.title}}</div>
+                        <div class="mb-2  text-void-black futuristic-body">{{"Price"|translate}}:{{wishListProduct.price}}</div>
+                        <div class="mb-2 text-main cursor-pointer text-red-600" (click)="removeWishListProduct(wishListProduct._id)"><i class="fas fa-trash me-1"></i>{{"Remove"|translate}}</div>
+                    </div> 
+                    <div class="w-2/12 row ">
+                        <button class="cursor-pointer hover:contrast-150 duration-300 btn bg-main focus:outline-none font-medium rounded-lg text-cyber-pink text-xl futuristic-body w-full sm:w-auto  py-2.5 text-center px-2" (click)="addProductToCart(wishListProduct.id)">+ {{"Add to cart"|translate}}</button>
+                    </div>
+                </div>
+                }
+            } @else {
+                <div class="text-center py-8">
+                    <p class="text-gray-500">{{"Loading"|translate}}...</p>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+</section>

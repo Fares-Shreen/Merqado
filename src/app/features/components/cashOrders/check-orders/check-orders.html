@@ -1,0 +1,75 @@
+<div class="container mx-auto mt-24">
+    <h2 class="text-3xl font-semibold text-[#212529]">Payment</h2>
+    <form class=" bg-[#F8F9FA] border border-transparent rounded-lg p-10 mt-5" [formGroup]="cashOrdersForm"
+        >
+
+        <div class="relative z-0 w-full mb-5 group">
+            <input formControlName="details" type="text" name="floating_details" id="floating_details"
+                class="block py-2.5 px-0 w-full text-md text-main bg-transparent border-0 border-b-2 border-gray-300 appearance-nonefocus:outline-none focus:ring-0 focus:border-gray-400 peer"
+                placeholder=" " required />
+            <label for="floating_details"
+                class="peer-focus:font-medium absolute text-md text-main duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-gray-400peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">details
+               </label>
+            @if (cashOrdersForm.get("details")?.errors && cashOrdersForm.get("details")?.touched) {
+            <div class="danger-alert">
+                @if (cashOrdersForm.get("details")?.errors?.["required"]) {
+                <p>details is required</p>
+                }
+            </div>
+            }
+        </div>
+        <div class="relative z-0 w-full mb-5 group">
+            <input formControlName="phone" type="text" name="floating_phone" id="floating_phone"
+                class="block py-2.5 px-0 w-full text-md text-main bg-transparent border-0 border-b-2 border-gray-300 appearance-nonefocus:outline-none focus:ring-0 focus:border-gray-400 peer"
+                placeholder=" " required />
+            <label for="floating_phone"
+                class="peer-focus:font-medium absolute text-md text-main duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-gray-400peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">phone</label>
+            @if (cashOrdersForm.get("phone")?.errors && cashOrdersForm.get("phone")?.touched) {
+            <div class="danger-alert">
+                @if (cashOrdersForm.get("phone")?.errors?.["required"]) {
+                <p>phone is required</p>
+                }
+                @else if (cashOrdersForm.get("phone")?.errors?.["pattern"]) {
+                <p> Your phone is not correct </p>
+                }
+            </div>
+            }
+        </div>
+                <div class="relative z-0 w-full mb-5 group">
+            <input formControlName="city" type="text" name="floating_city" id="floating_city"
+                class="block py-2.5 px-0 w-full text-md text-main bg-transparent border-0 border-b-2 border-gray-300 appearance-nonefocus:outline-none focus:ring-0 focus:border-gray-400 peer"
+                placeholder=" " required />
+            <label for="floating_city"
+                class="peer-focus:font-medium absolute text-md text-main duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-gray-400peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                city</label>
+            @if (cashOrdersForm.get("city")?.errors && cashOrdersForm.get("city")?.touched) {
+            <div class="danger-alert">
+                @if (cashOrdersForm.get("city")?.errors?.["required"]) {
+                <p>city is required</p>
+                }
+            </div>
+            }
+        </div>
+        <div class="flex justify-end gap-3">
+        <div class="items-center flex justify-between flex-col md:flex-row-reverse gap-3 ">
+            <button type="submit" [disabled]="cashOrdersForm.invalid" (click)="cashOrdersFormSubmit()"
+                class="cursor-pointer text-white bg-main  hover:contrast-150  focus:outline-none  font-medium rounded-lg text-md w-full sm:w-auto px-5 py-2.5 text-center">
+                @if (isLoadingForCash) {
+                <i class="fa-solid fa-spinner fa-spin"></i>
+                }
+                @else {<p>Cash Payment</p>}
+            </button>
+        </div>
+                <div class="items-center flex justify-between flex-col md:flex-row-reverse gap-3 ">
+            <button type="submit" [disabled]="cashOrdersForm.invalid" (click)="onlineOrdersFormSubmit()"
+                class="cursor-pointer text-white bg-main  hover:contrast-150  focus:outline-none  font-medium rounded-lg text-md w-full sm:w-auto px-5 py-2.5 text-center">
+                @if (isLoadingForOnline) {
+                <i class="fa-solid fa-spinner fa-spin"></i>
+                }
+                @else {<p>online Payment</p>}
+            </button>
+        </div>
+        </div>
+
+    </form>
+</div>

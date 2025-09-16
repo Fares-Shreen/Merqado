@@ -1,0 +1,42 @@
+
+<section class="w-full bg-void-light dark:bg-void-black">
+    <div class="container mx-auto mt-18 py-10">
+    @if (emailExistance!=null) {
+    <div class="danger-alert">
+        <p>{{emailExistance}}</p>
+    </div>
+    }
+    <h2 class="text-3xl font-semibold text-main">{{"Reset code"|translate}}</h2> 
+    <form class=" bg-main border border-transparent rounded-lg p-10 mt-5" [formGroup]="resetCodeForm"
+        (ngSubmit)="resetCodeFormSubmit()">
+
+        <div class="relative z-0 w-full mb-5 group">
+            <input formControlName="resetCode" type="text" name="floating_code" id="floating_code"
+                class="block py-2.5 px-0 w-full text-md text-void-black bg-transparent border-0 border-b-2 border-gray-300 appearance-nonefocus:outline-none focus:ring-0 focus:border-gray-400 peer"
+                placeholder=" " required />
+            <label for="floating_code"
+                class="peer-focus:font-medium absolute text-md text-void-black duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-gray-400peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">{{"Verification Code"|translate}}</label>
+            @if (resetCodeForm.get("resetCode")?.errors && resetCodeForm.get("resetCode")?.touched) {
+            <div class="danger-alert">
+                @if (resetCodeForm.get("resetCode")?.errors?.["required"]) {
+                <p>{{"code is required"|translate}}</p>
+                }
+                @else if (resetCodeForm.get("resetCode")?.errors?.["pattern"]) {
+                <p> {{"Your code is not correct"|translate}}</p>
+                }
+            </div>
+            }
+        </div>
+        <div class="items-center flex justify-between flex-col md:flex-row-reverse gap-3 ">
+            <button type="submit" [disabled]="resetCodeForm.invalid"
+                class="text-white bg-main  hover:contrast-150  focus:outline-none  font-medium rounded-lg text-md w-full sm:w-auto px-5 py-2.5 text-center">
+                @if (isLoading) {
+                <i class="fa-solid fa-spinner fa-spin"></i>
+                }
+                @else {<p>{{"Verify"|translate}}</p>}
+            </button>
+        </div>
+
+    </form>
+</div>
+</section>

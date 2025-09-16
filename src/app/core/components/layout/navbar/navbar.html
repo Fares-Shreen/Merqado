@@ -1,0 +1,104 @@
+<nav class="bg-void-light dark:bg-void-black w-full fixed z-20 top-0 start-0 rounded-b-xl shadow-main ">
+  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+    <a class="flex items-center space-x-3 rtl:space-x-reverse" routerLink="/home">
+      <h1 class="logo6">🛒Merqado</h1>
+    </a>
+    <div class="flex justify-between md:order-2 space-x-1 md:space-x-0 rtl:space-x-reverse">
+
+      <div class="flex flex-nowrap gap-1 min-w-0">
+        @if(isLogin){
+        <div class="flex items-center">
+          <button type="button"
+            class="text-gray-400 font-medium cursor-pointer rounded-lg text-xs px-2 py-1 md:px-10 md:py-3 text-center hover:bg-gray-200 duration-200 whitespace-nowrap flex-shrink-0 "
+            (click)="_Auth.logout()">{{"Logout"|translate}}</button>
+          <button type="button" routerLink="/cart"
+            class="relative inline-flex -end-2  items-center p-3 text-sm font-medium text-center text-white bg-main rounded-lg hover:contrast-150 duration-200 cursor-pointer focus:outline-none ">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span class="sr-only">{{"Notifications"|translate}}</span>
+            <div
+              class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-2">
+              {{_CartServices.productCartNumber.getValue()}} </div>
+          </button>
+
+        </div>
+
+        }
+        @else if (!isLogin) {<button type="button"
+          class="text-white bg-main font-medium cursor-pointer rounded-lg text-xs px-2 py-1 md:px-10 md:py-3 text-center hover:contrast-150 duration-200 whitespace-nowrap flex-shrink-0"
+          routerLink="register">{{"Sign Up"|translate}}</button>
+        <button type="button"
+          class="text-white bg-main font-medium cursor-pointer rounded-lg text-xs px-2 py-1 md:px-10 md:py-3  text-center hover:contrast-150 duration-200 whitespace-nowrap flex-shrink-0"
+          routerLink="login">{{"Login"|translate}}</button>}
+      </div>
+
+      <button data-collapse-toggle="navbar-sticky" type="button"
+        class="inline-flex items-center cursor-pointer p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+        aria-controls="navbar-sticky" aria-expanded="false">
+        <span class="sr-only">Open main menu</span>
+        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M1 1h15M1 7h15M1 13h15" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+      <ul
+        class=" bg-electric-blue me-3 flex flex-col px-4 py-1  mt-4 font-medium border border-gray-100 rounded-lg  md:space-x-2 lg:space-x-4 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 ">
+        <li>
+          <a routerLink="home" routerLinkActive="text-cyber-pink"
+            class="block duration-300 py-2 px-3 text-wihte rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-cyber-pink md:p-0">{{"Home"|translate}}</a>
+        </li>
+        @if(isLogin){
+        <li>
+          <a routerLink="cart" routerLinkActive="text-cyber-pink"
+            class="block duration-300 py-2 px-3 text-wihte rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-cyber-pink md:p-0">{{"Cart"|translate}}</a>
+        </li>
+        }
+        @if(isLogin){
+        <li>
+          <a routerLink="wishlist" routerLinkActive="text-cyber-pink"
+            class="block duration-300 py-2 px-3 text-wihte rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-cyber-pink md:p-0">{{"Wishlist"|translate}}</a>
+        </li>
+        }
+        <li>
+          <a routerLink="products" routerLinkActive="text-cyber-pink"
+            class="block duration-300 py-2 px-3 text-wihte rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-cyber-pink md:p-0">{{"Products"|translate}}</a>
+        </li>
+        <li>
+          <a routerLink="categories" routerLinkActive="text-cyber-pink"
+            class="block duration-300 py-2 px-3 text-wihte rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-cyber-pink md:p-0">{{"Categories"|translate}}</a>
+        </li>
+        <li>
+          <a routerLink="brands" routerLinkActive="text-cyber-pink"
+            class="block duration-300 py-2 px-3 me-3 text-wihte rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-cyber-pink md:p-0">{{"Brands"|translate}}</a>
+        </li>
+        @if(isLogin){
+        <li>
+          <a routerLink="allorders" routerLinkActive="text-cyber-pink"
+            class="block duration-300 py-2 px-3 text-wihte rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-cyber-pink md:p-0">{{"Orders"|translate}}</a>
+        </li>
+        }
+      </ul>
+      <div class="flex items-center justify-between mt-4">
+
+        <div class="ps-5 flex flex-col gap-3  mx-auto ">
+          <a class="cursor-pointer text-main hover:contrast-150 duration-200 "
+            (click)="_TranslationServices.chnageLanguage('en')">{{"English"|translate}}</a>
+          <a class="cursor-pointer text-main hover:contrast-150 duration-200"
+            (click)="_TranslationServices.chnageLanguage('ar')">{{"Arabic"|translate}}</a>
+        </div>
+        <button type="button" (click)="toggleDarkMode()"
+          class="inline-flex ms-3 cursor-pointer items-center justify-center p-2 w-10 h-10 text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200 mr-2">
+          <i [ngClass]="isDarkMode ? 'fas fa-sun' : 'fas fa-moon'" class="text-lg"></i>
+          <span class="sr-only">{{isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}}</span>
+        </button>
+                @if (isLogin) {
+        <i class="fa-solid fa-gear text-void-black dark:text-void-light cursor-pointer" routerLink="updatePassword"></i>
+        }
+      </div>
+
+    </div>
+
+  </div>
+</nav>

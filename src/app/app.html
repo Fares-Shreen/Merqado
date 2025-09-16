@@ -1,0 +1,14 @@
+<app-navbar></app-navbar>
+<div (click)="scrollToTop()" class="fixed bottom-5 right-5 text-main bg-void-black dark:bg-void-light cursor-pointer z-40 text-lg w-10 h-10 flex justify-center items-center rounded-full border-3"><i class="fa-solid fa-arrow-up"></i></div>
+<router-outlet>
+</router-outlet>
+<app-footer></app-footer>
+<ngx-spinner
+  bdColor="rgba(0,0,0,0.5)"
+  size="large"
+  type="ball-scale-multiple"
+  color="#23A6D5"
+>
+<span class="loader"></span>
+  <p style="font-size: 18px; color: #23A6D5; text-shadow: 0 0 10px #23A6D5, 0 0 20px #23A6D5;">Loading...</p>
+</ngx-spinner>

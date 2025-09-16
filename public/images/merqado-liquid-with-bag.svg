@@ -1,0 +1,16 @@
+<svg width="400" height="100" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="liquidGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" style="stop-color:#667eea">
+                                    <animate attributeName="stop-color" values="#667eea;#764ba2;#f093fb;#667eea" dur="4s" repeatCount="indefinite"/>
+                                </stop>
+                                <stop offset="50%" style="stop-color:#764ba2">
+                                    <animate attributeName="stop-color" values="#764ba2;#f093fb;#667eea;#764ba2" dur="4s" repeatCount="indefinite"/>
+                                </stop>
+                                <stop offset="100%" style="stop-color:#f093fb">
+                                    <animate attributeName="stop-color" values="#f093fb;#667eea;#764ba2;#f093fb" dur="4s" repeatCount="indefinite"/>
+                                </stop>
+                            </linearGradient>
+                        </defs>
+                        <text x="50" y="60" font-family="Arial, sans-serif" font-size="38" font-weight="bold" fill="url(#liquidGrad)">Merqado</text>
+                    </svg>

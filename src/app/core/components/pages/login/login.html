@@ -1,0 +1,59 @@
+
+<section class="w-full bg-void-light dark:bg-void-black"><div class="container mx-auto mt-18 py-10">
+    @if (emailExistance!=null) {
+    <div class="danger-alert">
+        <p>{{emailExistance}}</p>
+    </div>
+    }
+    <h2 class="text-3xl font-semibold text-main">{{"logIn now"|translate}}</h2>
+    <form class=" bg-main border border-transparent rounded-lg p-10 mt-5" [formGroup]="loginForm"
+        (ngSubmit)="loginFormSubmit()">
+
+        <div class="relative z-0 w-full mb-5 group">
+            <input formControlName="email" type="email" name="floating_email" id="floating_email"
+                class="block py-2.5 px-0 w-full futuristic-body text-void-black bg-transparent border-0 border-b-2 border-gray-300 appearance-nonefocus:outline-none focus:ring-0 focus:border-gray-400 peer"
+                placeholder=" " required />
+            <label for="floating_email"
+                class="peer-focus:font-medium absolute futuristic-body text-void-black duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-gray-400peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">{{"Email address"|translate}}</label>
+            @if (loginForm.get("email")?.errors && loginForm.get("email")?.touched) {
+            <div class="danger-alert">
+                @if (loginForm.get("email")?.errors?.["required"]) {
+                <p>{{"Email is required"|translate}}</p>
+                }
+                @else if (loginForm.get("email")?.errors?.["email"]) {
+                <p> {{"Your email is not correct"|translate}}</p>
+                }
+            </div>
+            }
+        </div>
+        <div class="relative z-0 w-full mb-5 group">
+            <input formControlName="password" type="password" name="floating_password" id="floating_password"
+                class="block py-2.5 px-0 w-full futuristic-body text-void-black bg-transparent border-0 border-b-2 border-gray-300 appearance-nonefocus:outline-none focus:ring-0 focus:border-gray-400 peer"
+                placeholder=" " required />
+            <label for="floating_password"
+                class="peer-focus:font-medium absolute futuristic-body text-void-black duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-gray-400peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">{{"Password"|translate}}</label>
+            @if (loginForm.get("password")?.errors && loginForm.get("password")?.touched) {
+            <div class="danger-alert">
+                @if (loginForm.get("password")?.errors?.["required"]) {
+                <p>{{"password is required"|translate}}</p>
+                }
+                @else if (loginForm.get("password")?.errors?.["pattern"]) {
+                <p> {{"Your password is not correct , It must contain Capital letters & small & numkbers & not less than 8 characters" |translate}}</p>
+                }
+            </div>
+            }
+        </div>
+
+        <div class="items-center flex justify-between flex-col md:flex-row-reverse gap-3 ">
+            <button type="submit" [disabled]="loginForm.invalid"
+                class="cursor-pointer text-white bg-main  hover:contrast-150  focus:outline-none  font-medium rounded-lg text-md w-full sm:w-auto px-5 py-2.5 text-center">
+                @if (isLoading) {
+                <i class="fa-solid fa-spinner fa-spin"></i>
+                }
+                @else { <p>{{"Login"|translate}}</p>}
+            </button>
+            <button class="text-cosmic-purple underline text-lg hover:contrast-150 duration-50 cursor-pointer" routerLink="/forgetpassword">{{"Forget Password"|translate}}</button>
+        </div>
+
+    </form>
+</div></section>
