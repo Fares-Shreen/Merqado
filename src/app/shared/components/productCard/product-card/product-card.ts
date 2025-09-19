@@ -1,5 +1,6 @@
+// import { products } from './../../../../features/interfaces/products';
 
-import { Component, Input, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, Input, OnInit, Inject, PLATFORM_ID, signal, WritableSignal, InputSignal } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { products } from '../../../../features/interfaces/products';
 import { Router, RouterLink } from '@angular/router';
@@ -55,7 +56,7 @@ export class ProductCard implements OnInit {
     if (localStorage.getItem("userToken")) {
       this._CartServices.addProductToCart(productId).subscribe({
         next: res => {
-          this._CartServices.productCartNumber.next(res.numOfCartItems);
+          this._CartServices.productCartNumber.set(res.numOfCartItems);
           this.toastr.success(res.message, '', {
             timeOut: 3000,
             positionClass: 'toast-bottom-right',

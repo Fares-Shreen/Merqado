@@ -27,7 +27,7 @@ export class Cart implements OnInit {
     this._CartServices.getCartProducts().subscribe({
       next: res => {
         this.cartData = res.data
-        this._CartServices.productCartNumber.next(res.numOfCartItems);
+        this._CartServices.productCartNumber.set(res.numOfCartItems);
       }
     })
   }
@@ -35,7 +35,7 @@ export class Cart implements OnInit {
     this._CartServices.updateProductQuantity(productId, count.toString()).subscribe({
       next: res => {
         this.cartData = res.data
-        this._CartServices.productCartNumber.next(res.numOfCartItems);
+        this._CartServices.productCartNumber.set(res.numOfCartItems);
         this.toastr.success("Product update to cart successfully", '', {
           timeOut: 3000,
           positionClass: 'toast-bottom-right',
@@ -48,7 +48,7 @@ export class Cart implements OnInit {
     this._CartServices.removeSpecificProduct(productId).subscribe({
       next: res => {
         this.cartData = res.data
-        this._CartServices.productCartNumber.next(res.numOfCartItems);
+        this._CartServices.productCartNumber.set(res.numOfCartItems);
         this.toastr.success("Product removed to cart successfully", '', {
           timeOut: 3000,
           positionClass: 'toast-bottom-right',
@@ -60,7 +60,7 @@ export class Cart implements OnInit {
   clearProductsProduct() {
     this._CartServices.clearAllProduct().subscribe({
       next: res => {
-        this._CartServices.productCartNumber.next(res.numOfCartItems);
+        this._CartServices.productCartNumber.set(res.numOfCartItems);
         this.displayCartProducts();
         this.toastr.success("Now cart is empty", '', {
           timeOut: 3000,

@@ -4,7 +4,7 @@
     <div class="bg-main rounded p-8 gap-8 flex flex-col ">
         <div class="flex justify-between items-center">
             <h2 class="text-3xl font-semibold">{{"Cart"|translate}}</h2>
-            @if (_CartServices.productCartNumber.getValue()!=0) {
+            @if (_CartServices.productCartNumber()!=0) {
             <button [routerLink]="['/cashorders',cartData?._id]"
                 class="btn text-cyber-pink text-2xl futuristic-body bg-main hover:contrast-150 duration-300  focus:outline-none  rounded-lg  w-auto cursor-pointer px-8 py-2.5 text-center">{{"Check Out"|translate}}</button>
             }

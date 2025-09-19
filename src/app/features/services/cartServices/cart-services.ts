@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, signal, WritableSignal } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { enviroment } from '../../../core/enviroment/baseData';
 import { cartRestonse } from '../../interfaces/cart';
@@ -8,7 +8,7 @@ import { cartRestonse } from '../../interfaces/cart';
   providedIn: 'root'
 })
 export class CartServices {
-  productCartNumber:BehaviorSubject<number>=new BehaviorSubject<number>(0);
+  productCartNumber:WritableSignal<number>=signal(0);
 
 
   constructor(private _HttpClient: HttpClient) {

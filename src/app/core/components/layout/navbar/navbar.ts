@@ -54,7 +54,7 @@ export class Navbar implements OnInit {
     if (localStorage.getItem("userToken")) {
       this._CartServices.getCartProducts().subscribe({
         next: res => {
-          this._CartServices.productCartNumber.next(res.numOfCartItems);
+          this._CartServices.productCartNumber.set(res.numOfCartItems);
         }
       });
     }

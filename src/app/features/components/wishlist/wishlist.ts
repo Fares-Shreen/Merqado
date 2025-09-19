@@ -45,7 +45,7 @@ export class Wishlist implements OnInit {
     if (localStorage.getItem("userToken")) {
       this._CartServices.addProductToCart(productId).subscribe({
         next: res => {
-          this._CartServices.productCartNumber.next(res.numOfCartItems);
+          this._CartServices.productCartNumber.set(res.numOfCartItems);
           this.toastr.success(res.message, '', {
             timeOut: 3000,
             positionClass: 'toast-bottom-right',

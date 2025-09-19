@@ -4,6 +4,7 @@ import { CheckOrdersServices } from '../../../services/cashOrdersServices/check-
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CartServices } from '../../../services/cartServices/cart-services';
 
 @Component({
   selector: 'app-check-orders',
@@ -12,7 +13,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrl: './check-orders.scss'
 })
 export class CheckOrders {
-  constructor(private _CheckOrdersServices: CheckOrdersServices, private _ToastrService: ToastrService, private _ActivatedRoute: ActivatedRoute,private _Router:Router) { }
+  constructor(private _CartServicesrt:CartServices,private _CheckOrdersServices: CheckOrdersServices, private _ToastrService: ToastrService, private _ActivatedRoute: ActivatedRoute,private _Router:Router) { }
   cashOrdersForm: FormGroup = new FormGroup({
     details: new FormControl(null, [Validators.required]),
     phone: new FormControl(null, [Validators.required, Validators.pattern(/^01[0125][0-9]{8}$/)]),
@@ -31,6 +32,7 @@ export class CheckOrders {
             next: res => {
               localStorage.setItem("userId",res.data.user);
               this.isLoadingForCash = false;
+              this._CartServicesrt.productCartNumber.set(0);
               this._ToastrService.success("Order is added 🎉", '', {
                 timeOut: 3000,
                 positionClass: 'toast-bottom-right',
@@ -55,6 +57,7 @@ export class CheckOrders {
                       this._CheckOrdersServices.onlinePaymentOrder(this.cashOrdersForm.value,res["cartId"]).subscribe({
             next: res => {
               this.isLoadingForOnline = false;
+              this._CartServicesrt.productCartNumber.set(0);
               this._ToastrService.success("Order is added 🎉", '', {
                 timeOut: 3000,
                 positionClass: 'toast-bottom-right',
