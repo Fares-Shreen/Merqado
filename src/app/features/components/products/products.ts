@@ -25,6 +25,7 @@ export class Products implements OnInit {
   productListOfPage1: products[] = [];
   productListOfPage2: products[] = [];
   ngOnInit(): void {
+    this.scrollToTop()
     this.displayProductsAtHomePage1();
     this.displayProductsAtHomePage2()
   }

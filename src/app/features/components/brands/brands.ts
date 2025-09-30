@@ -22,6 +22,7 @@ export class Brands implements OnInit {
   barndsList2!: barnd[];
   constructor(private _BrandsServises: BrandsServises ) { }
   ngOnInit(): void {
+    this.scrollToTop()
     this.displayBrandsPage1();
     this.displayBrandsPage2();
   }

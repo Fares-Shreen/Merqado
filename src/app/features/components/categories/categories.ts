@@ -20,6 +20,7 @@ export class Categories implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.scrollToTop()
     this.displayAllCategoriesInPage();
   }
 
@@ -32,6 +33,14 @@ export class Categories implements OnInit {
         console.error(err);
       }
     });
+  }
+    scrollToTop() {
+    if (typeof window !== 'undefined') {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
   }
 
 }
