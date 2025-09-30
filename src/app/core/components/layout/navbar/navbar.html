@@ -83,17 +83,22 @@
       <div class="flex items-center justify-between mt-4">
 
         <div class="ps-5 flex flex-col gap-3  mx-auto ">
-          <a class="cursor-pointer text-main hover:contrast-150 duration-200 "
-            (click)="_TranslationServices.chnageLanguage('en')">{{"English"|translate}}</a>
+          @if (isEnglish) {
           <a class="cursor-pointer text-main hover:contrast-150 duration-200"
-            (click)="_TranslationServices.chnageLanguage('ar')">{{"Arabic"|translate}}</a>
+            (click)="_TranslationServices.chnageLanguage('ar')" (click)="toggleTranslate()"><i class="fa-solid fa-globe"></i>{{"Arabic"|translate}}</a>
+          }
+          @else if (!isEnglish) {
+          <a class="cursor-pointer text-main hover:contrast-150 duration-200 "
+            (click)="_TranslationServices.chnageLanguage('en')" (click)="toggleTranslate()"><i class="fa-solid fa-globe"></i>{{"English"|translate}}</a>
+          }
+
         </div>
         <button type="button" (click)="toggleDarkMode()"
           class="inline-flex ms-3 cursor-pointer items-center justify-center p-2 w-10 h-10 text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200 mr-2">
           <i [ngClass]="isDarkMode ? 'fas fa-sun' : 'fas fa-moon'" class="text-lg"></i>
           <span class="sr-only">{{isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}}</span>
         </button>
-                @if (isLogin) {
+        @if (isLogin) {
         <i class="fa-solid fa-gear text-void-black dark:text-void-light cursor-pointer" routerLink="updatePassword"></i>
         }
       </div>

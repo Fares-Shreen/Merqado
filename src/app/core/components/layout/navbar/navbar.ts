@@ -21,6 +21,7 @@ import { DarkModeService } from '../../../services/dark-mode.service';
 export class Navbar implements OnInit {
   isLogin: boolean = false;
   isDarkMode: boolean = false;
+  isEnglish:boolean =true
   constructor(
     private flowbiteService: FlowbiteService,
     public _Auth: Auth,
@@ -71,6 +72,9 @@ export class Navbar implements OnInit {
     this.darkModeService.toggleTheme();
     this.isDarkMode=!this.isDarkMode;
     
+  }
+  toggleTranslate(){
+    this.isEnglish=!this.isEnglish
   }
 
 }
