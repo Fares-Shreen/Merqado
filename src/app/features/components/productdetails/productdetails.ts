@@ -23,6 +23,7 @@ export class Productdetails implements OnInit {
   constructor(private toastr: ToastrService, public _Auth: Auth, private _WishListServices: WishListServices, private _Router: Router, @Inject(PLATFORM_ID) private platformId: Object, private _ProductsDetailsServices: ProductsDetailsServices, private _ActivatedRoute: ActivatedRoute, private _CartServices: CartServices) { }
 
   ngOnInit(): void {
+    this.scrollTop();
     this.checkFavouriteItems();
     this.displayProductDetails();
   }
@@ -133,7 +134,12 @@ export class Productdetails implements OnInit {
       this._Router.navigate(['/login'])
     }
   }
-
+  scrollTop(){
+    window.scrollTo({
+      top:0,
+      behavior:"smooth"
+    })
+    }
 
 
 }
