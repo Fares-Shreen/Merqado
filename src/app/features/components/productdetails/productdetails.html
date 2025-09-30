@@ -1,40 +1,47 @@
-
 <section class="w-full bg-void-light dark:bg-void-black min-h-[100vh]">
-<div class="container mx-auto mt-18 py-10">
-    <div class="row items-center">
-        @if(productDetailsData){
-        <div class="w-full sm:w-1/4 ">
-            <owl-carousel-o [options]="customOptions">
+    <div class="container mx-auto mt-18 py-10">
+        <div class="row items-center">
+            @if(productDetailsData){
+            <div class="w-full sm:w-1/4 ">
+                <owl-carousel-o [options]="customOptions">
+                    @if (imagesList) {
+                    @for (image of imagesList; track $index) {
+                    <ng-template carouselSlide>
+                        <img [src]="image" [alt]="image" [title]="image">
+                    </ng-template>
+                    }
+                    }
+                    @else {
+                    <div class="text-center py-8">
+                        <p class="text-gray-500 futuristic-body">Loading ...</p>
+                    </div>
+                    }
 
-                @for (image of imagesList; track $index) {
-                <ng-template carouselSlide>
-                    <img [src]="image" [alt]="image" [title]="image">
-                </ng-template>
-                }
-            </owl-carousel-o>
-        </div>
-        <div class="w-full sm:w-3/4 flex flex-col gap-6 px-10">
-            <h2 class="text-3xl font-semibold text-main ">{{productDetailsData.title}}</h2>
-            <p class="text-gray-500  futuristic-body ">{{productDetailsData.description}}</p>
-            <div class="flex justify-between">
-                <h4 class="text-cosmic-purple futuristic-body">{{productDetailsData.price}} EGP</h4>
-                <div class="flex items-center">
-                    <i class="fas fa-star text-yellow-400 text-md me-1"></i>
-                    <span class="futuristic-body text-solar-orange">{{productDetailsData.ratingsAverage}}</span>
+                </owl-carousel-o>
+            </div>
+            <div class="w-full sm:w-3/4 flex flex-col gap-6 px-10">
+                <h2 class="text-3xl font-semibold text-main ">{{productDetailsData.title}}</h2>
+                <p class="text-gray-500  futuristic-body ">{{productDetailsData.description}}</p>
+                <div class="flex justify-between">
+                    <h4 class="text-cosmic-purple futuristic-body">{{productDetailsData.price}} EGP</h4>
+                    <div class="flex items-center">
+                        <i class="fas fa-star text-yellow-400 text-md me-1"></i>
+                        <span class="futuristic-body text-solar-orange">{{productDetailsData.ratingsAverage}}</span>
+                    </div>
+                </div>
+                <div class="w-3/4 mx-auto"><button (click)="addProductToCart(productDetailsData._id)"
+                        class="text-white bg-main  focus:outline-none font-medium rounded-lg text-sm w-full  duration-300 hover:contrast-150 cursor-pointer py-2.5 text-center">+
+                        Add </button></div>
+                <div class="flex cursor-pointer justify-end mt-3">
+                    <button class="cursor-pointer">
+                        <i class="fas fa-heart text-2xl transition-all duration-700 hover:scale-150 hover:text-cyber-pink hover:drop-shadow-[0_0_8px_#E73C7E]"
+                            [class.text-cyber-pink]="isFavorite || isRed"
+                            (click)="toggleWishlist(productDetailsData._id)"></i>
+                    </button>
+
                 </div>
             </div>
-            <div class="w-3/4 mx-auto"><button (click)="addProductToCart(productDetailsData._id)"
-                    class="text-white bg-main  focus:outline-none font-medium rounded-lg text-sm w-full  duration-300 hover:contrast-150 cursor-pointer py-2.5 text-center">+
-                    Add </button></div>
-        <div class="flex cursor-pointer justify-end mt-3">
-            <button class="cursor-pointer">
-                <i  class="fas fa-heart text-2xl transition-all duration-700 hover:scale-150 hover:text-cyber-pink hover:drop-shadow-[0_0_8px_#E73C7E]"
-                    [class.text-cyber-pink]="isFavorite || isRed" (click)="toggleWishlist(productDetailsData._id)"></i>
-            </button>
-
+            }
         </div>
-        </div>
-        }
     </div>
-</div>
 </section>
