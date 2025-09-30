@@ -21,7 +21,7 @@
         
 
     </div>
-    <owl-carousel-o id="products-section" [options]="customOptions" (click)="scrollToTop()" >
+    <owl-carousel-o id="products-section" [options]="customOptions" (change)="scrollToTop()" >
         <ng-template carouselSlide >
             <div class="row ">
                 @if (productListOfPage1 && productListOfPage1.length > 0) {
