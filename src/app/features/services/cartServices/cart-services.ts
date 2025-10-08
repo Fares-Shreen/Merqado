@@ -21,7 +21,7 @@ export class CartServices {
   }
 
   addProductToCart(productId: string): Observable<any> {
-    return this._HttpClient.post<any>(`${enviroment.baseUrl}/api/v1/cart`, { productId })
+    return this._HttpClient.post<any>(`${enviroment.baseUrl}/api/v1/cart`, { productId },)
     ;
   }
 
